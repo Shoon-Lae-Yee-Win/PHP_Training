@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: table;
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: #d8eff7;
+}
+
+h1 {
+  color: #01405b;
+  text-align: center;
+}
+
+table {
+  border: 3px solid #000;
+  border-collapse: collapse;
+}
+
+td {
+  width: 60px;
+  height: 60px;
+}
+
+.black-blk {
+  background-color: #000;
+}
+
+.white-blk {
+  background-color: #fff;
+}
