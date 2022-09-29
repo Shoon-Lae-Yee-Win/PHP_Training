@@ -20,8 +20,19 @@
         if ($bday > $today) {
             return 'You are not born yet';
         }
+        if ($bday == $today) {
+            return '';
+        }
         $diff = $today->diff($bday);
         return 'This is Your Age: ' . $diff->y . ' Years, ' . $diff->m . ' month, ' . $diff->d . ' days';
+    }
+    function errorAge($dob)
+    {
+        $bday = new DateTime($dob);
+        $today = new Datetime(date('m/d/y'));
+        if ($bday == $today) {
+            return 'Incorrect Message';
+        }
     }
     ?>
 
@@ -30,7 +41,9 @@
         <form>
             <div class="input-blk">
                 <label>Your Birthday Plz : <i class="fa-solid fa-cake-candles"></i></label>
-                <input type="date" class="bd" name="dob" value="<?php echo (isset($_GET['dob'])) ? $_GET['dob'] : ''; ?>"><br>
+                <input type="date" class="bd" name="dob" value="<?php echo (isset($_GET['dob'])) ? $_GET['dob'] : ''; ?>">
+                <br>
+                <span><?php echo errorAge($_GET['dob']); ?></span><br>
                 <input type="submit" value="Calculate Age">
             </div>
         </form>

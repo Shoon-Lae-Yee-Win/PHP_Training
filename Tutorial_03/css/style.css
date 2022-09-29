@@ -25,6 +25,10 @@ body {
   background: rgb(83 61 88 / 36%);
 }
 
+.input-blk {
+  position: relative;
+}
+
 .input-blk label {
   padding-right: 30px;
   color: #c2f604;
@@ -109,4 +113,11 @@ input[type=submit]:hover {
   color: #eb9f9f;
   font-size: 20px;
   text-align: center;
+}
+
+span {
+  position: absolute;
+  right: 33%;
+  color: red;
+  text-align: left;
 }

@@ -9,4 +9,3 @@ if ($user == 'username' and $password == '123456') {
 } else {
     header("location:index.php?error=1");
 }
-
