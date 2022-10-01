@@ -1,9 +1,16 @@
 <?php
 session_start();
+if (isset($_SESSION['user'])) {
+    header('location: home.php');
+    exit();
+}
+define("USER", "username");
+define("PASSWORD", "123456");
+session_start();
 $user = $_POST['user'];
 $password = $_POST['password'];
-
-if ($user == 'username' and $password == '123456') {
+// Check username and password 
+if ($user == USER and $password == PASSWORD) {
     $_SESSION['user'] = ["user" => "username"];
     header("location:home.php");
 } else {

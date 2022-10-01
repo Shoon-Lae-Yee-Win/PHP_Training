@@ -42,9 +42,6 @@ if (!isset($_SESSION['user'])) {
             </nav>
         </div>
     </div>
-
-
-
 </body>
 
 </html>
