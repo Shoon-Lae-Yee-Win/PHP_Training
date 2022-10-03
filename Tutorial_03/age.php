@@ -21,6 +21,7 @@
         $diff = $today->diff($bday);
         return 'This is Your Age: ' . $diff->y . ' Years, ' . $diff->m . ' month, ' . $diff->d . ' days';
     }
+
     //errorAge Function
     function errorAge($dob)
     {

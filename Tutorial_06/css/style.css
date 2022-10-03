@@ -1,0 +1,11 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(246, 235, 218, 0.45);
+  font-family: 'Franklin Gothic Medium', sans-serif;
+  font-weight: 700;
+}
