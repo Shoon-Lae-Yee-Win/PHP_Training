@@ -13,7 +13,7 @@
 <body>
     <h1>Reading File (text)</h1>
     <?php
-    $file = "sample.txt";
+    $file = "all_file/sample.txt";
     $handle = fopen($file, 'r');
     if (file_exists($file)) {
         echo fread($handle, filesize($file));
@@ -23,7 +23,7 @@
     <hr>
     <h1>Reading File (csv)</h1>
     <?php
-    $csvfile = fopen("sample.csv", "r");
+    $csvfile = fopen("all_file/sample.csv", "r");
     if ($csvfile !== FALSE) {
     ?>
         <table>
@@ -58,12 +58,67 @@
     <hr>
     <h1>Reading File (Excel)</h1>
     <?php
-    require_once('./excel/excel.php');
+    $path = __DIR__ . "\\vendor\\autoload.php";
+    require_once $path;
+
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
+    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    $spreadsheet = $reader->load(__DIR__ . "\\all_file/sample.xlsx");
+    $d = $spreadsheet->getSheet(0)->toArray();
+    $sheetData = $spreadsheet->getActiveSheet()->toArray();
+    $i = 0;
+    unset($sheetData[0]);
     ?>
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+                <th>Major</th>
+                <th>Year</th>
+                <th>Pass/Faill</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($sheetData as $t) { ?>
+                <tr>
+                    <td><?php echo $t[0]; ?></td>
+                    <td><?php echo $t[1]; ?></td>
+                    <td><?php echo $t[2]; ?></td>
+                    <td><?php echo $t[3]; ?></td>
+                    <td><?php echo $t[4]; ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
     <hr>
     <h1>Reading File (doc)</h1>
+    <h2>READ With PHPWord Library</h2>
     <?php
-    require_once('./word/doc.php');
+    require_once __DIR__ . "\\vendor\\autoload.php";
+    $source = __DIR__ . "\\all_file/sample.doc";
+    $phpWord = \PhpOffice\PhpWord\IOFactory::load($source);
+    ?>
+    <div class='w-border'>
+        <?php
+        foreach ($phpWord->getSections() as $section) {
+            foreach ($section->getElements() as $element) {
+                if ($element instanceof \PhpOffice\PhpWord\Element\TextRun) {
+                    foreach ($element->getElements() as $e) {
+                        if ($e instanceof \PhpOffice\PhpWord\Element\Text) {
+                            $style = $e->getFontStyle();
+                            $size = $style->getSize();
+                            $color = $style->getColor();
+                            echo '<p style="font-size:' . $size . 'px; color: #' . $color . '">'
+                                . $e->getText() . '</p>';
+                        }
+                    }
+                }
+            }
+        }
+        ?>
+    </div>
     ?>
 </body>
 
