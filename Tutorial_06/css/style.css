@@ -5,7 +5,24 @@
 }
 
 body {
-  background-color: rgba(246, 235, 218, 0.45);
+  background-color: #f6ebda73;
   font-family: 'Franklin Gothic Medium', sans-serif;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+span {
+  color: #ff0000;
+}
+
+h3 {
+  color: #ff0000;
+}
+
+h4 {
+  color: #4b8697;
+}
+
+.result-blk {
+  background-color: #d9ebf1;
 }
