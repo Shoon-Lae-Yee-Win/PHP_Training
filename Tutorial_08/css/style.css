@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #49899c94;
+}
+
+.title-blk {
+  display: table;
+  margin: 0 auto 50px;
+}
+
+.title {
+  margin: 50px 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.btn {
+  background-color: #003a4b;
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: #fff;
+}
+
+.btn a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn a:hover {
+  color: #003a4b;
+}
+
+table {
+  width: 100%;
+  border: 2px solid #064b63;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 16px;
+  border: 3px solid #064b63;
+  text-align: left;
+}
+
+th {
+  background-color: #375d6d;
+  color: #d6d4d4;
+  font-weight: 900;
+}
+
+tr:nth-child(even) {
+  background-color: #00c8ff52;
+}
+
+.cancel-btn,
+.delete-btn {
+  background-color: #ff0000;
+}
+
+.cancel:hover {
+  background-color: #fff;
+}
+
+.cancel-btn a {
+  color: #fff;
+}
+
+.cancel-btn a:hover {
+  color: #ff0000;
+}
+
+.edit-btn {
+  background-color: #77ff00;
+  color: #003a4b;
+}
+
+span {
+  color: #ff0000;
+}
+
+.wrapper {
+  width: 600px;
+  margin: 0 auto;
+}
