@@ -24,12 +24,6 @@
                     <?php }
                     } ?>
                     <br><br>
-                    <input type="text" name="text" placeholder="Enter something text....">
-                    <?php if (isset($_POST['submit'])) {
-                        if (empty($_POST['text'])) { ?>
-                            <span><b>Please fill something!</b></span>
-                    <?php }
-                    } ?>
                     <input type="submit" value="Submit" name="submit">
                 </div>
             </form>
@@ -37,14 +31,14 @@
         <?php
         require_once('phpqrcode/qrlib.php');
         if (isset($_POST['submit'])) {
-            if (empty($_POST['name']) && empty($_POST['text'])) {
+            if (empty($_POST['name'])) {
                 echo "";
             } else {
                 $path = 'images/';
+                $name = $_POST['name'];
                 $qrcode = $path . $_POST['name'] . ".png";
-                $text = $_POST['text'];
                 echo '<div class="rgt-blk"><h3>Username :' . $_POST['name'] . " - " . " Qrcode is here!</h3>";
-                Qrcode::png($text, $qrcode, 15, 15); ?>
+                Qrcode::png($name, $qrcode, 15, 15); ?>
                 <img src='images/<?php echo $_POST['name']; ?>.png'>
         <?php
             }
