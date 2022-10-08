@@ -32,8 +32,7 @@
                                     <th>Age</th>
                                     <th>Major</th>
                                     <th>Gender</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,8 +45,12 @@
                                         <td><?php echo $row['age']; ?></td>
                                         <td><?php echo $row['major']; ?></td>
                                         <td><?php echo $row['gender']; ?></td>
-                                        <td><button class="btn edit-btn"><a href="./crud/update_student.php?id=<?php echo $row['id']; ?>">Edit</a></button></td>
-                                        <td><button class="btn delete-btn"><a href="./crud/delete_student.php?id=<?php echo $row['id']; ?>">Delete</a></button></td>
+                                        <td>
+                                            <div>
+                                                <button class="btn edit-btn"><a href="./crud/update_student.php?id=<?php echo $row['id']; ?>">Edit</a></button>
+                                                <button class="btn delete-btn"><a href="./crud/delete_student.php?id=<?php echo $row['id']; ?>">Delete</a></button>
+                                            </div>
+                                        </td>
                                     </tr>
                         <?php
                                 }

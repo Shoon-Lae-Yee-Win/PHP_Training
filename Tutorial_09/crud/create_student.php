@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $address_err = "Please enter an address.";
     } else {
         $address = $input_address;
+        $address = nl2br($address);
     }
 
     // Validate age
@@ -42,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($input_major)) {
         $major_err = "Please enter the major.";
     } else {
-        $major = $input_major;
+        $major = strtoupper($input_major);
     }
 
     // Validate gender
@@ -139,8 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </select>
                         </div>
                         <span class="text-danger error-text"><?php echo $gender_err; ?></span> <br><br>
-                        <input type="submit" class="btn submit-btn" value="Submit">
                         <a href="../index.php" class="btn cancel-btn">Cancel</a>
+                        <input type="submit" class="btn submit-btn" value="Submit">
                     </form>
                 </div>
             </div>
