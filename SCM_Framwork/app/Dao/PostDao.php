@@ -14,7 +14,7 @@ class PostDao implements PostDaoInterface
 {
     /**
      * To get post
-     * @return Object $post get post
+     * @return Array $post get post
      */
     public function getPost()
     {

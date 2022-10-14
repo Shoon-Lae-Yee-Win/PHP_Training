@@ -11,7 +11,7 @@ interface PostServiceInterface
 {
     /**
      * To get post
-     * @return Object $post get post
+     * @return Array $post get post
      */
     public function getPost();
 
