@@ -52,6 +52,7 @@ class PostController extends Controller
 
     /**
      * To edit data
+     * @return View
      */
     public function edit($id)
     {
@@ -62,6 +63,7 @@ class PostController extends Controller
 
     /**
      * To update data
+     * @return Redirect
      */
     public function update(postUpdateRequest $request, $id)
     {
@@ -71,6 +73,7 @@ class PostController extends Controller
 
     /**
      * To delete data
+     * @return Redirect
      */
     public function destroy($id)
     {
