@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     /**
      * To create data
-     * @return Object $post get post
+     * @return view('index', Array)
      */
     public function create()
     {
@@ -21,7 +21,7 @@ class PostController extends Controller
     /**
      * To store data
      * @param Request
-     * @return Object $post store post
+     * @return Redirect ('/')
      */
     public function store(Request $request)
     {
@@ -44,7 +44,7 @@ class PostController extends Controller
     /**
      * To edit data
      * @param id
-     * @return Object $post edit post
+     * @return view('index', Array('post', 'posts'));
      */
     public function edit($id)
     {
@@ -56,7 +56,7 @@ class PostController extends Controller
     /**
      * To update data
      * @param Request,id
-     * @return Object $post update post
+     * @return Redirect('/')
      */
     public function update(Request $request, $id)
     {
@@ -79,7 +79,7 @@ class PostController extends Controller
     /**
      * To destory data
      * @param id
-     * @return Object $post destory post
+     * @return Redirect('/')
      */
     public function destroy($id)
     {
