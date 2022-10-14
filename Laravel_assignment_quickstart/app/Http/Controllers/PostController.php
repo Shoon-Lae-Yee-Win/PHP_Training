@@ -8,14 +8,21 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    //create function
+    /**
+     * To create data
+     * @return Object $post get post
+     */
     public function create()
     {
         $posts = Post::all();
         return view('index', compact('posts'));
     }
 
-    //store data function
+    /**
+     * To store data
+     * @param Request
+     * @return Object $post store post
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), array(
@@ -34,7 +41,11 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    //edit data function
+    /**
+     * To edit data
+     * @param id
+     * @return Object $post edit post
+     */
     public function edit($id)
     {
         $post = Post::find($id);
@@ -42,7 +53,11 @@ class PostController extends Controller
         return view('index', compact('post', 'posts'));
     }
 
-    //update data function
+    /**
+     * To update data
+     * @param Request,id
+     * @return Object $post update post
+     */
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), array(
@@ -61,7 +76,11 @@ class PostController extends Controller
         return redirect('/');
     }
 
-    //delete data function
+    /**
+     * To destory data
+     * @param id
+     * @return Object $post destory post
+     */
     public function destroy($id)
     {
         $post = Post::find($id);

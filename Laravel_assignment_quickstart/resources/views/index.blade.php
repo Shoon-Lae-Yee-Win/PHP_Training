@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Index Page</title>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -29,8 +29,9 @@
                             <span class="text-danger">{{ $errors->first('author') }}</span>
                         @endif
                         <div class="text-group mt-3">
+                            <button class="btn btn-warning"><a href="index.blade.php"><< Back </a></button>
                             <input type="submit" name="submit" class="btn btn-primary" value="Update">
-                            <button class="btn btn-danger"><a href="index.php">Cancel</a></button>
+                            <button class="btn btn-danger"><a href="/edit/{{ $post->id }}">Cancel</a></button>
                         </div>
                     </form>
                 @else
@@ -54,7 +55,7 @@
                         </div>
                         <div class="text-group">
                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                            <button class="btn btn-danger"><a href="index.php">Cancel</a></button>
+                            <button class="btn btn-danger"><a href="index.blade.php">Cancel</a></button>
                         </div>
                     </form>
                 @endif
@@ -64,7 +65,7 @@
             <table class="mt-3">
                 <tr>
                     <th>ID</th>
-                    <th>Post</th>
+                    <th>Title</th>
                     <th>Author</th>
                     <th>Created_Date</th>
                     <th>Modified_Date</th>
@@ -75,14 +76,16 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->author }}</td>
-                        <td>{{ $post->created_at }}</td>
-                        <td>{{ $post->updated_at }}</td>
+                        <td>{{ $post->created_at->format('d/m/Y') }}</td>
+                        <td>{{ $post->updated_at->format('d/m/Y') }}</td>
                         <td>
                             <div>
-                                <button class="btn btn-success"><a
-                                        href="{{ url('edit/' . $post->id) }}">Edit</a></button>
-                                <button class="btn btn-danger"><a
-                                        href="{{ url('delete/' . $post->id) }}">Delete</a></button>
+                                <button class="btn btn-success">
+                                    <a href="{{ url('edit/' . $post->id) }}">Edit</a>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <a href="{{ url('delete/' . $post->id) }}">Delete</a>
+                                </button>
                             </div>
                         </td>
                     </tr>
