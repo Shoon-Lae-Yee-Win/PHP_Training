@@ -1,4 +1,5 @@
 <?php
+$valide_token = false;
 if ($_GET['token']) {
     require_once('../database/config.php');
     $token = $_GET['token'];
@@ -35,17 +36,22 @@ if ($_GET['token']) {
             <div class="col-md-4 offset-4">
                 <div class="card reset-blk">
                     <h3 class="mt-5">Reset Password Comfirm</h3>
+                    <div class="alert mt-2 mx-3 d-none" role="alert" id="passNErr">
+                        Your password and confirm password is not same!
+                    </div>
                     <div class="card-body">
                         <?php if ($valide_token) { ?>
-                            <form action="update-forget-password.php" method="POST">
+                            <form action="update-forget-password.php" method="POST" id='upload'>
                                 <input type="hidden" name="username" value="<?php echo $username; ?>">
                                 <input type="hidden" name="reset_link_token" value="<?php echo $token; ?>">
                                 <div class="form-group mb-3">
                                     <input type="password" name='password' class="form-control" placeholder="Enter password...">
                                 </div>
+                                <span class="invalid-feedback d-none" id='passErr'>Password cannot Empty</span>
                                 <div class="form-group mb-3">
                                     <input type="password" name='cpassword' class="form-control" placeholder="Enter comfrim password...">
                                 </div>
+                                <span class="invalid-feedback d-none" id='cpassErr'>Password cannot Empty</span>
                                 <input type="submit" name="new-password" class="btn btn-primary">
                             </form>
                         <?php } else {   ?>
@@ -57,5 +63,47 @@ if ($_GET['token']) {
         </div>
     </div>
 </body>
+
+<script>
+    const formElem = document.getElementById('upload');
+    formElem.addEventListener('submit', (e) => {
+        // on form submission, prevent default
+        e.preventDefault();
+        // construct a FormData object, which fires the formdata event
+        const formData = new FormData(formElem);
+        // formdata gets modified by the formdata event
+        const password = formData.get('password');
+        const cpassword = formData.get('cpassword');
+        let result = checkInput(password, cpassword);
+        if (result) {
+            // submit the form 
+            formElem.submit();
+        }
+    });
+
+    function checkInput(password, cpassword) {
+        const passErr = document.getElementById('passErr');
+        const cpassErr = document.getElementById('cpassErr');
+        const passNErr = document.getElementById('passNErr');
+        if (password === '' || password === null) {
+            passErr.classList.remove('d-none');
+        } else {
+            passErr.classList.add('d-none');
+        }
+        if (cpassword === '' || cpassword === null) {
+            cpassErr.classList.remove('d-none');
+            return false;
+        } else {
+            cpassErr.classList.add('d-none');
+        }
+        if (password !== cpassword) {
+            passNErr.classList.remove('d-none');
+            return false;
+        } else {
+            passNErr.classList.add('d-none');
+        }
+        return true;
+    }
+</script>
 
 </html>

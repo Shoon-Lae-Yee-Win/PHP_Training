@@ -1,21 +1,21 @@
 <?php
 session_start();
+require_once "../database/config.php";
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("location: ../index.php");
     exit;
 }
-require_once "../database/config.php";
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
+$email = $password = "";
+$email_err = $password_err = $login_err = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Check if username is empty
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter username.";
+    // Check if email is empty
+    if (empty(trim($_POST["email"]))) {
+        $email_err = "Please enter email.";
     } else {
-        $username = trim($_POST["username"]);
+        $email = trim($_POST["email"]);
     }
 
     // Check if password is empty
@@ -25,28 +25,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    if (empty($username_err) && empty($password_err)) {
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
-        if ($stmt = mysqli_prepare($link, $sql)) {
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            $param_username = $username;
+    if (empty($email_err) && empty($password_err)) {
+        $query = "SELECT id, email, password FROM users WHERE email = ?";
+        if ($stmt = mysqli_prepare($link, $query)) {
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
+            $param_email = $email;
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 1) {
-                    mysqli_stmt_bind_result($stmt, $id, $username, $d_password);
+                    mysqli_stmt_bind_result($stmt, $id, $email, $d_password);
                     if (mysqli_stmt_fetch($stmt)) {
                         if ($password === $d_password) {
                             session_start();
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
+                            $_SESSION["email"] = $email;
                             header("location: ../index.php");
                         } else {
-                            $login_err = "Invalid username or password.";
+                            $login_err = "Invalid email or password.";
                         }
                     }
                 } else {
-                    $login_err = "Invalid username or password.";
+                    $login_err = "Invalid email or password.";
                 }
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
@@ -77,8 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             <form action="" method="POST">
                 <h3>Login page</h3>
-                <input type="text" name="username" id="username" placeholder="Your name.." <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                <input type="email" name="email" id="email" placeholder="Your email.." <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                <span class="invalid-feedback"><?php echo $email_err; ?></span>
                 <input type="password" name="password" id="password" name="password" placeholder="Your password.." <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
                 <input type="submit" value="Login">

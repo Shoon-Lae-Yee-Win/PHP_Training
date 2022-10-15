@@ -20,7 +20,6 @@ if (isset($_POST['password']) && $_POST['reset_link_token'] && $_POST['username'
         }
     }
 }
-
 //Delete token function
 function deleteToken($link, $username)
 {

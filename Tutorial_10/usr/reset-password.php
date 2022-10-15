@@ -47,7 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         error_log("email:" . $username, 0);
                         $token = md5($email) . rand(10, 9999);
                         if (insert_token($username, $token, $link)) {
-                            $link = "<a href='http://localhost/tutorial10/usr/reset-password-confirm.php?key=" . $username . "&token=" . $token . "'>Click To Reset password</a>";
+                            //$link = "<a href='http://localhost/PHP_Training/Tutorial_10/usr/reset-password-confirm.php?key=" . $username . "&token=" . $token . "'>Click To Reset password</a>";
+                            $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+                            $hostname = $_SERVER['HTTP_HOST'];
+                            $link =    "<a href=" . $protocol . $hostname . "/PHP_Training/Tutorial_10/usr/reset-password-confirm.php?key=" . $username . "&token=" . $token . ">Click To Reset password</a>";
                             require_once('../mail_setup.php');
                             $mail->addAddress($email, $username);
                             $mail->Subject  =  'Reset Password';

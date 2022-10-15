@@ -24,6 +24,6 @@ $mail->isHTML(true);
 $mail->Subject = 'Password Reset';
 $email_template = "<h2>Hey Guys!</h2>
   <h2>Verification link for your account!.</h2><br/><br/>
-  <a href='http://localhost/tutorial10/usr/reset-password-comfirm.php'>Click button</a>";
+  <a href='http://localhost/PHP_Training/Tutorial_10/usr/reset-password-comfirm.php'>Click button</a>";
 $mail->Body    = $email_template;
 $mail->send();
