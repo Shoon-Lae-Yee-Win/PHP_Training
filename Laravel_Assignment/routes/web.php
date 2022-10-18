@@ -32,4 +32,7 @@ Route::post('/prod/update/{id}', [ProductController::class, 'update'])->name('pr
 
 //Export
 Route::get('prod/export/', [ProductController::class, 'export'])->name('product#export');
-Route::post('prod/import/',[ProductController::class,'import'])->name('product#import');
+Route::post('prod/import/', [ProductController::class, 'import'])->name('product#import');
+
+//serach
+Route::get('prod/search', [ProductController::class, 'search'])->name('product#search');

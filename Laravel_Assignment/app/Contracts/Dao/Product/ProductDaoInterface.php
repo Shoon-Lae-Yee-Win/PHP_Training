@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
  */
 interface ProductDaoInterface
 {
+    public function showPost();
     /**
      * To list post
      * @return Array
@@ -47,4 +48,11 @@ interface ProductDaoInterface
      * To export
      */
     public function exportPost();
+
+    /**
+     * To search
+     * @param request
+     * @return Object
+     */
+    public function searchPost($request);
 }

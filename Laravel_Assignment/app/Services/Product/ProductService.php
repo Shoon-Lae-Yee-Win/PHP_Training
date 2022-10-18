@@ -29,6 +29,10 @@ class ProductService implements ProductServiceInterface
         $this->productDao = $productDao;
     }
 
+    public function showPost()
+    {
+        return $this->productDao->showPost();
+    }
     /**
      * To list post
      * @return Array
@@ -84,7 +88,7 @@ class ProductService implements ProductServiceInterface
      */
     public function exportPost()
     {
-        $products=$this->productDao->exportPost();
+        $products = $this->productDao->exportPost();
         return Excel::download(new ProductExport($products), 'product.xlsx');
     }
 
@@ -94,6 +98,14 @@ class ProductService implements ProductServiceInterface
      */
     public function importPost($request)
     {
-        return Excel::import(new ProductImport,$request->file('product_file'));
+        return Excel::import(new ProductImport, $request->file('product_file'));
+    }
+
+    /**
+     * To search data
+     */
+    public function searchPost($request)
+    {
+        return $this->productDao->searchPost($request);
     }
 }

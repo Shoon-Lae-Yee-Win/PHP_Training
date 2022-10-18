@@ -12,13 +12,23 @@ use App\Contracts\Dao\Product\ProductDaoInterface;
 class ProductDao implements ProductDaoInterface
 {
     /**
+     * To show post
+     * @return Array
+     */
+    public function showPost()
+    {
+        $data = Product::orderBy('id', 'desc')->get();
+        return $data;
+    }
+
+    /**
      * To list post
      * @return Array
      */
     public function listPost()
     {
         $categories = Category::select('id', 'cat_name')->get();
-        $products = Product::with('category')->paginate(3);
+        $products = Product::with('category')->get();
         return compact('categories', 'products');
     }
 
@@ -71,10 +81,40 @@ class ProductDao implements ProductDaoInterface
     }
 
     /**
-     * To export
+     * To export post
+     * @return Array
      */
-    public function exportPost(){
-        $products=Product::all();
+    public function exportPost()
+    {
+        $products = Product::all();
+        return $products;
+    }
+
+    /**
+     * To search post
+     * @return Array
+     */
+    public function searchPost($request)
+    {
+        $name = $request->name;
+        $category = $request->category;
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+        $products = Product::join('categories', 'products.cat_id', '=', 'categories.id')
+            ->select('products.*', 'categories.cat_name');
+        if ($name) {
+            $products->whereRaw("prod_name like '%$name%'");
+        }
+        if ($category) {
+            $products->whereRaw("cat_name like '%$category%'");
+        }
+        if ($startDate) {
+            $products->whereRaw("products.created_at >= '$startDate'");
+        }
+        if ($endDate) {
+            $products->whereRaw("products.created_at <= '$endDate'");
+        }
+        $products = $products->get();
         return $products;
     }
 

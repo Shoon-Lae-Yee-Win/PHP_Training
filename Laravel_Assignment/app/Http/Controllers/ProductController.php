@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Product\ProductServiceInterface;
 
@@ -33,7 +35,8 @@ class ProductController extends Controller
      */
     public function show()
     {
-        return view('welcome');
+        $products = $this->productInterface->showPost();
+        return view('welcome', compact('products'));
     }
 
     /**
@@ -53,13 +56,13 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         Validator::make($request->all(), [
-            'prod_name' => 'required|min:5|unique:products,prod_name,' . $request->id,
+            'prod_name' => 'required|min:5|unique:products,prod_name,',
             'category' => 'required',
             'price' => 'required',
             'description' => 'required',
         ])->validate();
         $this->productInterface->createPost($request);
-        return redirect()->route('product#list')->with(['createSuccess' => 'Category Created ...']);
+        return redirect()->route('product#show')->with(['createSuccess' => 'Category Created ...']);
     }
 
     /**
@@ -79,7 +82,7 @@ class ProductController extends Controller
     public function update($id, Request $request)
     {
         $data = $this->productInterface->updatePost($request, $id);
-        return redirect()->route('product#list', $data)->with(['updateSuccess' => 'Category Updated...']);
+        return redirect()->route('product#show', $data)->with(['updateSuccess' => 'Category Updated...']);
     }
 
     /**
@@ -94,6 +97,7 @@ class ProductController extends Controller
 
     /**
      * To export data
+     * @return
      */
     public function export()
     {
@@ -108,5 +112,15 @@ class ProductController extends Controller
     {
         $this->productInterface->importPost($request);
         return back();
+    }
+
+    /**
+     * To search date
+     * @return view welcome
+     */
+    public function search(Request $request)
+    {
+        $products = $this->productInterface->searchPost($request);
+        return view('welcome', compact('products'));
     }
 }

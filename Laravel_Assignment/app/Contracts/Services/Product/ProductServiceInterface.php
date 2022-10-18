@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
  */
 interface ProductServiceInterface
 {
+    public function showPost();
     /**
      * To list post
      * @return Array
@@ -54,4 +55,11 @@ interface ProductServiceInterface
      * @return Array
      */
     public function importPost($request);
+
+    /**
+     * To search
+     * @param request
+     * @return Object
+     */
+    public function searchPost($request);
 }
