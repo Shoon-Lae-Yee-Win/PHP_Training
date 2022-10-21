@@ -19,9 +19,9 @@ use App\Http\Controllers\ProductApiController;
 //    return $request->user();
 //});
 //
-Route::get('/product', [ProductApiController::class, 'index'])->name('product#index');
-Route::post('/product', [ProductApiController::class, 'store'])->name('product#store');
-Route::get('/product/show', [ProductApiController::class, 'show'])->name('product#show');
-Route::get('/product/edit/{id}', [ProductApiController::class, 'edit'])->name('product#edit');
-Route::put('product/update/{id}', [ProductApiController::class, 'update'])->name('product#update');
-Route::delete('product/delete/{id}', [ProductApiController::class, 'delete'])->name('prodcut#delete');
+//Route::get('/product', [ProductApiController::class, 'index'])->name('product#index');
+//Route::post('/product', [ProductApiController::class, 'store'])->name('product#store');
+//Route::get('/product/show', [ProductApiController::class, 'show'])->name('product#show');
+//Route::get('/product/edit/{id}', [ProductApiController::class, 'edit'])->name('product#edit');
+//Route::put('product/update/{id}', [ProductApiController::class, 'update'])->name('product#update');
+//Route::delete('product/delete/{id}', [ProductApiController::class, 'delete'])->name('prodcut#delete');

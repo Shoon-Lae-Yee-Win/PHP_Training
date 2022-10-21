@@ -164,15 +164,15 @@
                         $('tbody').html("");
                         $.each(response.data.products, function(key, item) {
                             $('tbody').append('<tr>\
-                                                                    <td>' + item.id + '</td>\
-                                                                    <td>' + item.prod_name + '</td>\
-                                                                    <td>' + item.category.cat_name + '</td>\
-                                                                    <td>' + item.price + '</td>\
-                                                                    <td>' + item.description + '</td>\
-                                                                    <td><button type="button" value="' + item.id + '" class="btn btn-edit editbtn ">Edit</button>\
-                                                                        <button type="button" value="' + item.id + '" class="btn btn-danger deletebtn ">Delete</button></td>\
-                                                                    </td>\
-                                                                </tr>');
+                                                                        <td>' + item.id + '</td>\
+                                                                        <td>' + item.prod_name + '</td>\
+                                                                        <td>' + item.category.cat_name + '</td>\
+                                                                        <td>' + item.price + '</td>\
+                                                                        <td>' + item.description + '</td>\
+                                                                        <td><button type="button" value="' + item.id + '" class="btn btn-edit editbtn ">Edit</button>\
+                                                                            <button type="button" value="' + item.id + '" class="btn btn-danger deletebtn ">Delete</button></td>\
+                                                                        </td>\
+                                                                    </tr>');
                         });
                     }
                 });

@@ -80,13 +80,13 @@ class ProductController extends Controller
     public function update($id, Request $request)
     {
         Validator::make($request->all(), [
-            'prod_name' => 'required|min:5|unique:products,prod_name,'.$request->id,
+            'prod_name' => 'required|min:5|unique:products,prod_name,' . $request->id,
             'category' => 'required',
             'price' => 'required',
             'description' => 'required',
         ])->validate();
         $data = $this->productInterface->updatePost($request, $id);
-        return redirect()->route('product#show', $data)->with(['updateSuccess' => 'Category Updated...']);
+        return redirect()->route('product#show', $data)->with(['updateSuccess' => 'Product Updated...']);
     }
 
     /**
@@ -96,7 +96,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $this->productInterface->deletePost($id);
-        return back()->with(['deleteSuccess' => 'Category Deleted ...']);
+        return redirect()->route('mailsession');
     }
 
     /**
