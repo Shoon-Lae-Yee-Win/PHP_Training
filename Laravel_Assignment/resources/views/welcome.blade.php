@@ -22,10 +22,12 @@
             </form>
         </div>
         <div class="btn-sec">
-            <button class="add-btn"><a href="{{ '/list' }}"><i class="fa-solid fa-circle-plus"></i> Add
-                    Category</a></button>
-            <button class="add-btn"><a href="{{ '/prod/list' }}"><i class="fa-solid fa-circle-plus"></i> Add
-                    Product</a></button>
+            <button class="add-btn">
+                <a href="{{ '/list' }}"><i class="fa-solid fa-circle-plus"></i> Add Category</a>
+            </button>
+            <button class="add-btn">
+                <a href="{{ '/prod/list' }}"><i class="fa-solid fa-circle-plus"></i> Add Product</a>
+            </button>
         </div>
         <div class="search-blk">
             <form action="{{ route('product#search') }}" class="mt-3" method="GET">

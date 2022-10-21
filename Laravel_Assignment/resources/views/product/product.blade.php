@@ -3,22 +3,6 @@
     <button class="back-btn m-3 "><a href="{{ '/' }}">Back</a></button>
     <div class="container">
         <div class="row">
-            {{-- @if (session('createSuccess'))
-                <div class="col-4 offset-8 mb-3">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fa-solid fa-check"></i> {{ session('createSuccess') }} </strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif
-            @if (session('updateSuccess'))
-                <div class="col-4 offset-8 mb-3">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong><i class="fa-solid fa-check"></i> {{ session('updateSuccess') }} </strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif --}}
             <div class="card col-md-6 shadow offset-3 my-5 rounded-3 px-5 py-3">
                 <h3 class="text-center my-4">Product Form</h3>
                 <form action="{{ route('product#create') }}" method="POST">

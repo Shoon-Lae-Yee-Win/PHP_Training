@@ -28,7 +28,7 @@ class ProductDao implements ProductDaoInterface
     public function listPost()
     {
         $categories = Category::select('id', 'cat_name')->get();
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->orderBy('id','desc')->get();
         return compact('categories', 'products');
     }
 
@@ -76,8 +76,7 @@ class ProductDao implements ProductDaoInterface
      */
     public function deletePost($id)
     {
-        $productDelete = Product::where('id', $id)->delete();
-        return $productDelete;
+        Product::where('id', $id)->delete();
     }
 
     /**
